@@ -5,6 +5,8 @@ class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._init();
   static Database? _database;
 
+  String name = "";
+
   DatabaseHelper._init();
 
   Future<Database> get getDatabase async {
@@ -33,22 +35,23 @@ class DatabaseHelper {
 
   Future<int> registerUser(String name, String email, String password) async {
     final db = await instance.getDatabase;
-    return await db.insert(
-      "account", {
-        "name": name,
-        "email": email,
-        "password": password
-      }
-    );
+    return await db.insert("account", {
+      "name": name,
+      "email": email,
+      "password": password,
+    });
   }
 
   Future<Map<String, dynamic>?> loginUser(String email, String password) async {
     final db = await instance.getDatabase;
     final result = await db.query(
       "account",
+      columns: ["name"],
       where: "email = ? AND password = ?",
-      whereArgs: [email, password]
+      whereArgs: [email, password],
     );
+
+    name = result.first["name"] as String? ?? "";
 
     if (result.isNotEmpty) return result.first;
     return null;

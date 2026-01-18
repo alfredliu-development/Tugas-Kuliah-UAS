@@ -285,7 +285,7 @@ class _SignInState extends State<SignIn> {
       // ignore: use_build_context_synchronously
       context,
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => HomeBar(),
+        pageBuilder: (context, animation, secondaryAnimation) => HomeBar(name: DatabaseHelper.instance.name),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
             opacity: animation,
