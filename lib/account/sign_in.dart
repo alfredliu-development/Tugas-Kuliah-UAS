@@ -281,11 +281,12 @@ class _SignInState extends State<SignIn> {
 
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setBool("isLogin", true);
+    pref.setString("name", user["name"]);
     Navigator.push(
       // ignore: use_build_context_synchronously
       context,
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => HomeBar(name: DatabaseHelper.instance.name),
+        pageBuilder: (context, animation, secondaryAnimation) => HomeBar(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
             opacity: animation,

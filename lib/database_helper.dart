@@ -5,8 +5,6 @@ class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._init();
   static Database? _database;
 
-  String name = "";
-
   DatabaseHelper._init();
 
   Future<Database> get getDatabase async {
@@ -46,12 +44,9 @@ class DatabaseHelper {
     final db = await instance.getDatabase;
     final result = await db.query(
       "account",
-      columns: ["name"],
       where: "email = ? AND password = ?",
       whereArgs: [email, password],
     );
-
-    name = result.first["name"] as String? ?? "";
 
     if (result.isNotEmpty) return result.first;
     return null;
