@@ -1,5 +1,6 @@
+import 'package:anime_detail/page/menu_bar/bottom_navigation_page.dart';
+import 'package:anime_detail/page/menu_bar/drawer_page.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeBar extends StatefulWidget {
   const HomeBar({super.key});
@@ -9,27 +10,22 @@ class HomeBar extends StatefulWidget {
 }
 
 class _HomeBarState extends State<HomeBar> {
-  String? name;
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Welcome, $name"),
+        title: Text(
+          "Your Anime",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: "Decol"
+          ),
+        ),
       ),
+
+      drawer: DrawerPage(),
+      bottomNavigationBar: BottomNavigationPage(),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void getName() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    setState(() {
-      name = pref.getString("name") ?? "";
-    });
   }
 }

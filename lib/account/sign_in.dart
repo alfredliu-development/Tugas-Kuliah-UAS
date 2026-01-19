@@ -281,7 +281,6 @@ class _SignInState extends State<SignIn> {
 
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setBool("isLogin", true);
-    pref.setString("name", user["name"]);
     Navigator.push(
       // ignore: use_build_context_synchronously
       context,
