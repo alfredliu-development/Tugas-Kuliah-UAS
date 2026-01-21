@@ -1,3 +1,4 @@
+import 'package:anime_detail/page/menu_bar/bottom_navigator_page.dart';
 import 'package:anime_detail/page/menu_bar/drawer_page.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,7 @@ class HomePage extends StatelessWidget {
       ),
 
       drawer: DrawerPage(),
+      bottomNavigationBar: BottomNavigatorPage(index: 0),
     );
   }
 }
