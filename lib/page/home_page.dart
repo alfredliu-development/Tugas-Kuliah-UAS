@@ -1,15 +1,9 @@
-import 'package:anime_detail/page/menu_bar/bottom_navigation_page.dart';
 import 'package:anime_detail/page/menu_bar/drawer_page.dart';
 import 'package:flutter/material.dart';
 
-class HomeBar extends StatefulWidget {
-  const HomeBar({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
-  @override
-  State<HomeBar> createState() => _HomeBarState();
-}
-
-class _HomeBarState extends State<HomeBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +19,6 @@ class _HomeBarState extends State<HomeBar> {
       ),
 
       drawer: DrawerPage(),
-      bottomNavigationBar: BottomNavigationPage(),
     );
   }
 }

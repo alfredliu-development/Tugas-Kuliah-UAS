@@ -1,6 +1,6 @@
 import 'package:anime_detail/account/sign_up.dart';
 import 'package:anime_detail/database_helper.dart';
-import 'package:anime_detail/page/home_bar.dart';
+import 'package:anime_detail/page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -285,7 +285,7 @@ class _SignInState extends State<SignIn> {
       // ignore: use_build_context_synchronously
       context,
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => HomeBar(),
+        pageBuilder: (context, animation, secondaryAnimation) => HomePage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
             opacity: animation,
