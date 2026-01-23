@@ -25,7 +25,7 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: 20,
-            vertical: 31
+            vertical: 10
           ),
 
           child: GNav(

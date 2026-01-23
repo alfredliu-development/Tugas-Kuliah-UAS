@@ -16,9 +16,22 @@ class DrawerPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        child: Image.asset("assets/image/shizuku-chan_icon.png"),
+                      ),
+
+                      Text(
+                        ""
+                      )
+                    ],
+                  ),
+                ],
               ),
             )
           ],
