@@ -24,8 +24,8 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
         color: Color.fromARGB(255, 1, 183, 237),
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 10
+            horizontal: 5,
+            vertical: 5
           ),
 
           child: GNav(
@@ -33,6 +33,8 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             gap: 8,
             tabBackgroundColor: Color.fromARGB(255, 102, 191, 255),
+            color: Colors.black38,
+            activeColor: Colors.white,
             textStyle: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

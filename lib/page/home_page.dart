@@ -42,6 +42,14 @@ class HomePage extends StatelessWidget {
                 radius: BorderRadius.circular(10),
                 thickness: 2,
                 endIndent: 20,
+              ),
+
+              SizedBox(height: 10),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                ),
               )
             ],
           ),

@@ -44,6 +44,7 @@ class DatabaseHelper {
     final db = await instance.getDatabase;
     final result = await db.query(
       "account",
+      columns: ["name"],
       where: "email = ? AND password = ?",
       whereArgs: [email, password],
     );
