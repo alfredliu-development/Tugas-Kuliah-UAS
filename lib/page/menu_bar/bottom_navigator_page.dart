@@ -24,8 +24,8 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
         color: Color.fromARGB(255, 1, 183, 237),
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: 5,
-            vertical: 5
+            horizontal: 10,
+            vertical: 15
           ),
 
           child: GNav(

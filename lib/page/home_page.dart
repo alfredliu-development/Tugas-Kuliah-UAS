@@ -46,47 +46,57 @@ class HomePage extends StatelessWidget {
               ),
 
               SizedBox(height: 10),
-              ListView.builder(
-                scrollDirection: Axis.horizontal,
-                controller: ScrollController(
-                  initialScrollOffset: 1,
-                ),
-
-                itemBuilder: (context, index) {
-                  final PopularList popular = popularList[index];
-                  return InkWell(
-                    child: Card(
-                      clipBehavior: Clip.antiAlias,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              popular.imageTitle,
-                              width: 150,
-                              height: 220,
-                              fit: BoxFit.cover,
-                            ),
+              SizedBox(
+                height: 300,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    final popular = popularList[index];
+                    return InkWell(
+                      borderRadius: BorderRadius.circular(20),
+                      child: SizedBox(
+                        width: 200,
+                        child: Card(
+                          clipBehavior: Clip.antiAlias,
+                          elevation: 5,
+                          margin: EdgeInsets.symmetric(
+                            horizontal: 23.6,
+                            vertical: 20.4,
                           ),
-                      
-                          SizedBox(height: 10),
-                          Text(
-                            popular.title,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Tokumin",
-                            ),
-                          )
-                        ],
+                
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: Image.asset(
+                                  popular.imageTitle,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                ),
+                              ),
+                                
+                              Padding(
+                                padding: EdgeInsets.all(25),
+                                child: Text(
+                                  popular.title,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontFamily: "Tokumin",
+                                    fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  );
-                },
+                
+                      onTap: () {},
+                    );
+                  },
+                
+                  itemCount: popularList.length,
+                ),
               )
             ],
           ),
