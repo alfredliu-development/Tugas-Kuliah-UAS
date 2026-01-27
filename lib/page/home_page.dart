@@ -45,9 +45,8 @@ class HomePage extends StatelessWidget {
                 endIndent: 20,
               ),
 
-              SizedBox(height: 10),
               SizedBox(
-                height: 300,
+                height: 360,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
@@ -80,6 +79,7 @@ class HomePage extends StatelessWidget {
                                   popular.title,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: "Tokumin",
                                     fontWeight: FontWeight.bold
@@ -97,7 +97,9 @@ class HomePage extends StatelessWidget {
                 
                   itemCount: popularList.length,
                 ),
-              )
+              ),
+
+              SizedBox(height: 50),
             ],
           ),
         )
