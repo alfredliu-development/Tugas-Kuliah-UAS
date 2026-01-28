@@ -45,14 +45,9 @@ class _SignInState extends State<SignIn> {
             child: Container(
               height: 370,
               width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                horizontal: 30,
-                vertical: 20
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
 
-              margin: EdgeInsets.symmetric(
-                horizontal: 20
-              ),
+              margin: EdgeInsets.symmetric(horizontal: 20),
 
               decoration: BoxDecoration(
                 color: Colors.white54,
@@ -72,7 +67,7 @@ class _SignInState extends State<SignIn> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                
+
                     SizedBox(height: 25),
                     Form(
                       key: _formKey,
@@ -82,29 +77,27 @@ class _SignInState extends State<SignIn> {
                             controller: _emailController,
                             decoration: InputDecoration(
                               labelText: "Email",
-                              labelStyle: TextStyle(
-                                color: Colors.black54
-                              ),
-                          
+                              labelStyle: TextStyle(color: Colors.black54),
+
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(
                                   color: Color.fromARGB(255, 252, 229, 111),
                                 ),
                               ),
-                          
+
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                          
+
                             keyboardType: TextInputType.emailAddress,
                             validator: (value) {
                               if (value == null || value.isEmpty) return "The email is Empty";
                               return !value.contains("@") || !value.contains(".com") ? "The email is invalid" : null;
                             },
                           ),
-                
+
                           SizedBox(height: 20),
                           TextFormField(
                             controller: _passwordController,
@@ -114,29 +107,29 @@ class _SignInState extends State<SignIn> {
                               labelStyle: TextStyle(
                                 color: Colors.black54
                               ),
-                          
+
                               suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _isPasswordVisible ? Icons.visibility : Icons.visibility_off
-                                  ),
-                          
-                                  onPressed: () => setState(() {
-                                    _isPasswordVisible = !_isPasswordVisible;
-                                  }),
+                                icon: Icon(
+                                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                                 ),
-                          
+
+                                onPressed: () => setState(() {
+                                  _isPasswordVisible = !_isPasswordVisible;
+                                }),
+                              ),
+
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(
                                   color: Color.fromARGB(255, 252, 229, 111),
                                 ),
                               ),
-                          
+
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                          
+
                             keyboardType: TextInputType.visiblePassword,
                             validator: (value) {
                               if (value == null || value.isEmpty) return "The password is Empty";
@@ -157,7 +150,7 @@ class _SignInState extends State<SignIn> {
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                 vertical: 15,
-                                horizontal: 50
+                                horizontal: 50,
                               ),
 
                               child: Text(
@@ -165,7 +158,7 @@ class _SignInState extends State<SignIn> {
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: "Opti"
+                                  fontFamily: "Opti",
                                 ),
                               ),
                             ),
@@ -175,7 +168,7 @@ class _SignInState extends State<SignIn> {
                                 doSignIn();
                               }
                             },
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -186,10 +179,7 @@ class _SignInState extends State<SignIn> {
                       children: [
                         Text(
                           "Don't have an account?",
-                          style: TextStyle(
-                            fontFamily: "Opti",
-                            fontSize: 16,
-                          ),
+                          style: TextStyle(fontFamily: "Opti", fontSize: 16),
                         ),
 
                         SizedBox(width: 5),
@@ -208,21 +198,29 @@ class _SignInState extends State<SignIn> {
                             Navigator.push(
                               context,
                               PageRouteBuilder(
-                                pageBuilder: (context, animation, secondaryAnimation) => SignUp(),
-                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                  return FadeTransition(
-                                    opacity: animation,
-                                    child: child,
-                                  );
-                                },
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) =>
+                                        SignUp(),
+                                transitionsBuilder:
+                                    (
+                                      context,
+                                      animation,
+                                      secondaryAnimation,
+                                      child,
+                                    ) {
+                                      return FadeTransition(
+                                        opacity: animation,
+                                        child: child,
+                                      );
+                                    },
 
                                 transitionDuration: Duration(milliseconds: 800),
-                              )
+                              ),
                             );
                           },
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -254,9 +252,9 @@ class _SignInState extends State<SignIn> {
             "Your email and password is wrong",
             style: TextStyle(
               fontFamily: "Tokumin",
-              fontSize: 16,
-            )
-          )
+              fontSize: 16
+            ),
+          ),
         ),
       );
 
@@ -271,8 +269,8 @@ class _SignInState extends State<SignIn> {
           "Sign In is Success",
           style: TextStyle(
             fontFamily: "Tokumin",
-            fontSize: 16,
-          )
+            fontSize: 16
+          ),
         ),
 
         duration: Duration(seconds: 3),
@@ -281,7 +279,7 @@ class _SignInState extends State<SignIn> {
 
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setBool("isLogin", true);
-    pref.setString("getName", user.entries.first.value);
+    pref.setString("name", user.entries.first.value);
     Navigator.push(
       // ignore: use_build_context_synchronously
       context,
@@ -290,12 +288,12 @@ class _SignInState extends State<SignIn> {
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
             opacity: animation,
-            child: child,
+            child: child
           );
         },
 
         transitionDuration: Duration(milliseconds: 800),
-      )
+      ),
     );
   }
 }

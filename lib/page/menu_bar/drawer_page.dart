@@ -1,3 +1,4 @@
+import 'package:anime_detail/account/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,8 +13,15 @@ class _DrawerPageState extends State<DrawerPage> {
   String name = "";
 
   @override
+  void initState() {
+    super.initState();
+    getName();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: 350,
       child: Padding(
         padding: EdgeInsetsGeometry.symmetric(
           horizontal: 20,
@@ -47,71 +55,81 @@ class _DrawerPageState extends State<DrawerPage> {
                           fontWeight: FontWeight.bold,
                           fontFamily: "Decol",
                         ),
-                      )
+                      ),
                     ],
                   ),
 
                   IconButton(
                     icon: Icon(Icons.close),
                     onPressed: () => Navigator.pop(context),
-                  )
+                  ),
                 ],
               ),
             ),
 
             SizedBox(height: 50),
-            name == "" ?
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 102, 191, 255),
-                padding: EdgeInsets.symmetric(
-                  vertical: 15,
-                  horizontal: 10
-                ),
+            name == ""
+                ? ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 102, 191, 255),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 15,
+                        horizontal: 10,
+                      ),
 
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-                )
-              ),
-
-              child: Text(
-                "Sign In",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontFamily: "Opti",
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white
-                ),
-              ),
-
-              onPressed: () => Navigator.pop(context),
-            ) :
-
-            InkWell(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(
-                    Icons.settings,
-                    size: 30,
-                    color: Colors.black54,
-                  ),
-
-                  SizedBox(width: 20),
-                  Text(
-                    "Settings",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: "Tokumin",
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                  )
-                ],
-              ),
 
-              onTap: () {},
-            )
+                    child: Text(
+                      "Sign In",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontFamily: "Opti",
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation, secondaryAnimation) => SignIn(),
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+
+                          transitionDuration: Duration(milliseconds: 800),
+                        ),
+                      );
+                    },
+                  )
+                : InkWell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.settings, size: 30, color: Colors.black54),
+
+                        SizedBox(width: 20),
+                        Text(
+                          "Settings",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: "Tokumin",
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    onTap: () {},
+                  ),
           ],
         ),
       ),

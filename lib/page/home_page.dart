@@ -100,6 +100,14 @@ class HomePage extends StatelessWidget {
               ),
 
               SizedBox(height: 50),
+              Text(
+                "Anime Day",
+                style: TextStyle(
+                  fontFamily: "Decol",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18
+                ),
+              )
             ],
           ),
         )
