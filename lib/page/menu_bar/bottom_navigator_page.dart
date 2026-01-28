@@ -55,14 +55,14 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
               ),
 
               GButton(
-                icon: Icons.emoji_events,
-                text: "Top Anime",
-              ),
-
-              GButton(
                 icon: Icons.book,
                 text: "Your Anime List",
               ),
+
+              GButton(
+                icon: Icons.favorite,
+                text: "Your Favorite Anime",
+              )
             ],
           ),
         ),

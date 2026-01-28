@@ -1,6 +1,7 @@
 import 'package:anime_detail/page/list/popular_list.dart';
 import 'package:anime_detail/page/menu_bar/bottom_navigator_page.dart';
 import 'package:anime_detail/page/menu_bar/drawer_page.dart';
+import 'package:anime_detail/page/api/popular_services.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,10 +14,7 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         title: Text(
           "Your Anime",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontFamily: "Decol"
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "Decol"),
         ),
       ),
 
@@ -29,7 +27,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Your Anime Recomendation",
+                "Top 10 Most Popular Anime",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -47,55 +45,137 @@ class HomePage extends StatelessWidget {
 
               SizedBox(
                 height: 360,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    final popular = popularList[index];
-                    return InkWell(
-                      borderRadius: BorderRadius.circular(20),
-                      child: SizedBox(
-                        width: 200,
-                        child: Card(
-                          clipBehavior: Clip.antiAlias,
-                          elevation: 5,
-                          margin: EdgeInsets.symmetric(
-                            horizontal: 23.6,
-                            vertical: 20.4,
-                          ),
-                
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Image.asset(
-                                  popular.imageTitle,
-                                  fit: BoxFit.cover,
-                                  width: double.infinity,
-                                ),
+                child: FutureBuilder<List<PopularList>>(
+                  future: PopularServices().getPopularAnime(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator()
+                      );
+                    }
+                    
+                    else if (snapshot.hasError) {
+                      return Center(
+                        child: Text("Error: ${snapshot.error}")
+                      );
+                    }
+                    
+                    else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return const Center(
+                        child: Text("No Data")
+                      );
+                    }
+
+                    final dataAnimePopular = snapshot.data!;
+
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: dataAnimePopular.length,
+                      itemBuilder: (context, index) {
+                        final popular = dataAnimePopular[index];
+                        return InkWell(
+                          borderRadius: BorderRadius.circular(20),
+                          child: SizedBox(
+                            width: 200,
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              elevation: 5,
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 23.6,
+                                vertical: 20.4,
                               ),
-                                
-                              Padding(
-                                padding: EdgeInsets.all(25),
-                                child: Text(
-                                  popular.title,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: "Tokumin",
-                                    fontWeight: FontWeight.bold
+
+                              child: Stack(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Expanded(
+                                        child:
+                                            popular.imageTitle.startsWith(
+                                              'http',
+                                            )
+                                            ? Image.network(
+                                                popular.imageTitle,
+                                                fit: BoxFit.cover,
+                                                width: double.infinity,
+                                              )
+                                            : Image.asset(
+                                                popular.imageTitle,
+                                                fit: BoxFit.cover,
+                                                width: double.infinity,
+                                              ),
+                                      ),
+
+                                      Padding(
+                                        padding: const EdgeInsets.all(25),
+                                        child: Text(
+                                          popular.title,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            fontFamily: "Tokumin",
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              )
-                            ],
+
+                                  // Ranking Badge
+                                  Positioned(
+                                    top: 10,
+                                    left: 10,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 6,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: index == 0
+                                            ? Colors.amber
+                                            : index == 1
+                                            ? Colors.grey[400]
+                                            : index == 2
+                                            ? Colors.orange[300]
+                                            : Colors.blue[700],
+                                        borderRadius: BorderRadius.circular(20),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(
+                                              0.3,
+                                            ),
+                                            blurRadius: 4,
+                                            offset: const Offset(0, 2),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Text(
+                                        '#${index + 1}',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          shadows: [
+                                            Shadow(
+                                              color: Colors.black45,
+                                              blurRadius: 2,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                
-                      onTap: () {},
+
+                          onTap: () {},
+                        );
+                      },
                     );
                   },
-                
-                  itemCount: popularList.length,
                 ),
               ),
 
@@ -105,13 +185,13 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "Decol",
                   fontWeight: FontWeight.bold,
-                  fontSize: 18
+                  fontSize: 18,
                 ),
-              )
+              ),
             ],
           ),
-        )
-      )
+        ),
+      ),
     );
   }
 }
