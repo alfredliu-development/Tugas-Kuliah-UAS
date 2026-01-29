@@ -109,27 +109,84 @@ class _DrawerPageState extends State<DrawerPage> {
                       );
                     },
                   )
-                : InkWell(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.settings, size: 30, color: Colors.black54),
-
-                        SizedBox(width: 20),
-                        Text(
-                          "Settings",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: "Tokumin",
-                            fontWeight: FontWeight.bold,
+                : Column(
+                  children: [
+                    InkWell(
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.person,
+                            size: 30,
                             color: Colors.black54,
                           ),
-                        ),
-                      ],
+
+                          SizedBox(width: 20),
+                          Text(
+                            "Profile",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: "Tokumin",
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black54,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    
+                    SizedBox(height: 24),
+                    InkWell(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.settings,
+                            size: 30,
+                            color: Colors.black54
+                          ),
+                    
+                          SizedBox(width: 20),
+                          Text(
+                            "Settings",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: "Tokumin",
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ],
+                      ),
+                    
+                      onTap: () {},
                     ),
 
-                    onTap: () {},
-                  ),
+                    SizedBox(height: 24),
+                    InkWell(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.logout,
+                            size: 30,
+                            color: Colors.black54,
+                          ),
+
+                          SizedBox(width: 20),
+                          Text(
+                            "Logout",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: "Tokumin",
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
           ],
         ),
       ),

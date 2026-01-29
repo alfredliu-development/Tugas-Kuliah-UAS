@@ -23,6 +23,14 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+
+        actions: [
+          IconButton(
+            icon: Icon(Icons.favorite_outline),
+            iconSize: 25,
+            onPressed: () {},
+          ),
+        ],
       ),
 
       body: SingleChildScrollView(
@@ -82,33 +90,53 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
               ],
             ),
 
+            SizedBox(height: 24),
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 8,
+              runSpacing: 8,
+              children: widget.popularList.genres.map((genre) {
+                return Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Colors.blue.withOpacity(0.3),
+                    ),
+                  ),
+              
+                  child: Text(
+                    genre,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: "Opti",
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue[800],
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+
             SizedBox(height: 30),
             Container(
-              margin: EdgeInsets.only(
-                left: 20,
-                right: 20,
-                bottom: 45
-              ),
-              
-              padding: EdgeInsets.symmetric(
-                horizontal: 25,
-                vertical: 30
-              ),
+              margin: EdgeInsets.only(left: 20, right: 20, bottom: 45),
+
+              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
 
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                border: Border.all(
-                  color: Colors.white30,
-                  width: 1.5,
-                ),
+                border: Border.all(color: Colors.white30, width: 1.5),
 
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [
-                    Colors.white38,
-                    Colors.white10,
-                  ],
+                  colors: [Colors.white38, Colors.white10],
                 ),
 
                 boxShadow: [
@@ -135,7 +163,7 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
                         color: Colors.black,
                       ),
                     ),
-                
+
                     SizedBox(height: 15),
                     Text(
                       widget.popularList.detail,

@@ -1,3 +1,4 @@
+import 'package:anime_detail/page/menu_bar/bottom_navigator_page.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -10,6 +11,10 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+      
+      bottomNavigationBar: BottomNavigatorPage(index: 1),
+    );
   }
 }
