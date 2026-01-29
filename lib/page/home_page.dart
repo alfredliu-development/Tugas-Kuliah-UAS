@@ -1,3 +1,4 @@
+import 'package:anime_detail/page/home_detail_page.dart';
 import 'package:anime_detail/page/list/popular_list.dart';
 import 'package:anime_detail/page/menu_bar/bottom_navigator_page.dart';
 import 'package:anime_detail/page/menu_bar/drawer_page.dart';
@@ -122,7 +123,6 @@ class HomePage extends StatelessWidget {
                                     ],
                                   ),
 
-                                  // Ranking Badge
                                   Positioned(
                                     top: 10,
                                     left: 10,
@@ -131,25 +131,26 @@ class HomePage extends StatelessWidget {
                                         horizontal: 12,
                                         vertical: 6,
                                       ),
+
                                       decoration: BoxDecoration(
                                         color: index == 0
-                                            ? Colors.amber
+                                            ? Color.fromARGB(255, 255, 215, 0)
                                             : index == 1
-                                            ? Colors.grey[400]
+                                            ? Color.fromARGB(255, 131, 137, 150)
                                             : index == 2
-                                            ? Colors.orange[300]
+                                            ? Color.fromARGB(255, 169, 169, 95)
                                             : Colors.blue[700],
+                                            
                                         borderRadius: BorderRadius.circular(20),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.black.withOpacity(
-                                              0.3,
-                                            ),
+                                            color: Colors.black38,
                                             blurRadius: 4,
                                             offset: const Offset(0, 2),
                                           ),
                                         ],
                                       ),
+
                                       child: Text(
                                         '#${index + 1}',
                                         style: const TextStyle(
@@ -171,7 +172,20 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
 
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder: (context, animation, secondaryAnimation) => HomeDetailPage(popularList: popular),
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  return FadeTransition(
+                                    opacity: animation,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                            );
+                          },
                         );
                       },
                     );

@@ -104,13 +104,13 @@ class _SignInState extends State<SignIn> {
                             obscureText: !_isPasswordVisible,
                             decoration: InputDecoration(
                               labelText: "Password",
-                              labelStyle: TextStyle(
-                                color: Colors.black54
-                              ),
+                              labelStyle: TextStyle(color: Colors.black54),
 
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                                  _isPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
                                 ),
 
                                 onPressed: () => setState(() {
@@ -133,7 +133,9 @@ class _SignInState extends State<SignIn> {
                             keyboardType: TextInputType.visiblePassword,
                             validator: (value) {
                               if (value == null || value.isEmpty) return "The password is Empty";
-                              return value.length < 6 ? "A password must be 6 character or more" : null;
+                              return value.length < 6
+                                  ? "A password must be 6 character or more"
+                                  : null;
                             },
                           ),
 
@@ -250,10 +252,7 @@ class _SignInState extends State<SignIn> {
         SnackBar(
           content: Text(
             "Your email and password is wrong",
-            style: TextStyle(
-              fontFamily: "Tokumin",
-              fontSize: 16
-            ),
+            style: TextStyle(fontFamily: "Tokumin", fontSize: 16),
           ),
         ),
       );
@@ -267,10 +266,7 @@ class _SignInState extends State<SignIn> {
         padding: EdgeInsets.all(10),
         content: Text(
           "Sign In is Success",
-          style: TextStyle(
-            fontFamily: "Tokumin",
-            fontSize: 16
-          ),
+          style: TextStyle(fontFamily: "Tokumin", fontSize: 16),
         ),
 
         duration: Duration(seconds: 3),
@@ -279,17 +275,15 @@ class _SignInState extends State<SignIn> {
 
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setBool("isLogin", true);
-    pref.setString("name", user.entries.first.value);
+    pref.setString("name", user['name']);
+    pref.setInt("userId", user['id']); // Simpan ID user
     Navigator.push(
       // ignore: use_build_context_synchronously
       context,
       PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) => HomePage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child
-          );
+          return FadeTransition(opacity: animation, child: child);
         },
 
         transitionDuration: Duration(milliseconds: 800),

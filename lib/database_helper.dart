@@ -29,6 +29,17 @@ class DatabaseHelper {
         password TEXT
       )
     """);
+
+    await db.execute("""
+      CREATE TABLE favorites(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        title TEXT,
+        image_title TEXT,
+        detail TEXT,
+        FOREIGN KEY (user_id) REFERENCES account (id)
+      )
+    """);
   }
 
   Future<int> registerUser(String name, String email, String password) async {
@@ -44,12 +55,47 @@ class DatabaseHelper {
     final db = await instance.getDatabase;
     final result = await db.query(
       "account",
-      columns: ["name"],
+      columns: ["id", "name"], // Ambil ID juga
       where: "email = ? AND password = ?",
       whereArgs: [email, password],
     );
 
     if (result.isNotEmpty) return result.first;
     return null;
+  }
+
+  // --- Fitur Favorites ---
+
+  Future<int> addFavorite(
+    int userId,
+    String title,
+    String imageTitle,
+    String detail,
+  ) async {
+    final db = await instance.getDatabase;
+    return await db.insert("favorites", {
+      "user_id": userId,
+      "title": title,
+      "image_title": imageTitle,
+      "detail": detail,
+    });
+  }
+
+  Future<List<Map<String, dynamic>>> getFavorites(int userId) async {
+    final db = await instance.getDatabase;
+    return await db.query(
+      "favorites",
+      where: "user_id = ?",
+      whereArgs: [userId],
+    );
+  }
+
+  Future<int> removeFavorite(int userId, String title) async {
+    final db = await instance.getDatabase;
+    return await db.delete(
+      "favorites",
+      where: "user_id = ? AND title = ?",
+      whereArgs: [userId, title],
+    );
   }
 }
