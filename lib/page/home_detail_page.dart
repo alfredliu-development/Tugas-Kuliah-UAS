@@ -103,10 +103,10 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
                   ),
                   
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Color.fromARGB(100, 64, 196, 255),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: Colors.blue.withOpacity(0.3),
+                      color: Color.fromARGB(255, 102, 191, 255),
                     ),
                   ),
               

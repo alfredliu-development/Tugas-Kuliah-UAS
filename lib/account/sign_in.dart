@@ -33,7 +33,10 @@ class _SignInState extends State<SignIn> {
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color.fromARGB(80, 0, 182, 237), Colors.white],
+                colors: [
+                  Color.fromARGB(80, 0, 182, 237),
+                  Colors.white
+                ],
 
                 begin: AlignmentGeometry.topCenter,
                 end: AlignmentGeometry.bottomCenter,
