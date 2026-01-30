@@ -1,5 +1,7 @@
-import 'package:anime_detail/page/home_detail_page.dart';
+import 'package:anime_detail/page/menu_bar/home_detail/popular_detail_page.dart';
 import 'package:anime_detail/page/list/popular_list.dart';
+import 'package:anime_detail/page/list/recommended_list.dart';
+import 'package:anime_detail/page/menu_bar/home_detail/recommend_detail_page.dart';
 import 'package:anime_detail/page/menu_bar/bottom_navigator_page.dart';
 import 'package:anime_detail/page/menu_bar/drawer_page.dart';
 import 'package:anime_detail/page/api/popular_services.dart';
@@ -169,7 +171,7 @@ class HomePage extends StatelessWidget {
                               PageRouteBuilder(
                                 pageBuilder:
                                     (context, animation, secondaryAnimation) =>
-                                        HomeDetailPage(popularList: popular),
+                                        PopularDetailPage(animeData: popular),
                                 transitionsBuilder:
                                     (
                                       context,
@@ -204,19 +206,23 @@ class HomePage extends StatelessWidget {
 
               Divider(height: 30, color: Colors.black45, thickness: 1),
 
-              FutureBuilder<List<PopularList>>(
+              FutureBuilder<List<RecommendedList>>(
                 future: RecommendedServices().getRecommendedAnime(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
+                    return Center(
                       child: Padding(
                         padding: EdgeInsets.all(20.0),
                         child: CircularProgressIndicator(),
                       ),
                     );
-                  } else if (snapshot.hasError) {
+                  }
+                  
+                  else if (snapshot.hasError) {
                     return Center(child: Text("Error: ${snapshot.error}"));
-                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  }
+                  
+                  else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return const Center(child: Text("No Data"));
                   }
 
@@ -230,31 +236,25 @@ class HomePage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
+
                         child: InkWell(
                           onTap: () {
                             Navigator.push(
                               context,
                               PageRouteBuilder(
-                                pageBuilder:
-                                    (context, animation, secondaryAnimation) =>
-                                        HomeDetailPage(popularList: anime),
-                                transitionsBuilder:
-                                    (
-                                      context,
-                                      animation,
-                                      secondaryAnimation,
-                                      child,
-                                    ) {
-                                      return FadeTransition(
-                                        opacity: animation,
-                                        child: child,
-                                      );
-                                    },
+                                pageBuilder: (context, animation, secondaryAnimation) => RecommendDetailPage(animeData: anime),
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  return FadeTransition(
+                                    opacity: animation,
+                                    child: child,
+                                  );
+                                },
                               ),
                             );
                           },
+
                           child: Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: EdgeInsets.all(12.0),
                             child: Row(
                               children: [
                                 ClipRRect(
@@ -266,6 +266,7 @@ class HomePage extends StatelessWidget {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
+
                                 SizedBox(width: 15),
                                 Expanded(
                                   child: Column(
@@ -282,6 +283,7 @@ class HomePage extends StatelessWidget {
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                       ),
+
                                       SizedBox(height: 8),
                                       Row(
                                         children: [
@@ -299,6 +301,7 @@ class HomePage extends StatelessWidget {
                                           ),
                                         ],
                                       ),
+                                      
                                       SizedBox(height: 8),
                                       Text(
                                         anime.detail,

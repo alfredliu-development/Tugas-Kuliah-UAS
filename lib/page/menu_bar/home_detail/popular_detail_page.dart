@@ -1,22 +1,21 @@
-import 'package:anime_detail/page/list/popular_list.dart';
 import 'package:flutter/material.dart';
 
-class HomeDetailPage extends StatefulWidget {
-  final PopularList popularList;
-  const HomeDetailPage({super.key, required this.popularList});
+class PopularDetailPage extends StatefulWidget {
+  final dynamic animeData;
+  const PopularDetailPage({super.key, required this.animeData});
 
   @override
-  State<HomeDetailPage> createState() => _HomeDetailPageState();
+  State<PopularDetailPage> createState() => _PopularDetailPageState();
 }
 
-class _HomeDetailPageState extends State<HomeDetailPage> {
+class _PopularDetailPageState extends State<PopularDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          widget.popularList.title,
+          widget.animeData.title,
           style: const TextStyle(
             fontFamily: "Decol",
             fontSize: 20,
@@ -53,9 +52,9 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
 
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: widget.popularList.imageTitle.startsWith('http')
-                      ? Image.network(widget.popularList.imageTitle)
-                      : Image.asset(widget.popularList.imageTitle),
+                  child: widget.animeData.imageTitle.startsWith('http')
+                      ? Image.network(widget.animeData.imageTitle)
+                      : Image.asset(widget.animeData.imageTitle),
                 ),
               ),
             ),
@@ -80,7 +79,7 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
 
                 SizedBox(width: 10),
                 Text(
-                  "${widget.popularList.rating}/10.0",
+                  "${widget.animeData.rating}/10.0",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -95,13 +94,10 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
               alignment: WrapAlignment.center,
               spacing: 8,
               runSpacing: 8,
-              children: widget.popularList.genres.map((genre) {
+              children: widget.animeData.genres.map((genre) {
                 return Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+
                   decoration: BoxDecoration(
                     color: Color.fromARGB(100, 64, 196, 255),
                     borderRadius: BorderRadius.circular(20),
@@ -109,7 +105,7 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
                       color: Color.fromARGB(255, 102, 191, 255),
                     ),
                   ),
-              
+
                   child: Text(
                     genre,
                     style: TextStyle(
@@ -166,7 +162,7 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
 
                     SizedBox(height: 15),
                     Text(
-                      widget.popularList.detail,
+                      widget.animeData.detail,
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                         fontSize: 16,
