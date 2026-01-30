@@ -4,6 +4,7 @@ class RecommendedList {
   String detail;
   dynamic rating;
   List<String> genres;
+  String gender;
 
   RecommendedList({
     required this.title,
@@ -11,6 +12,7 @@ class RecommendedList {
     required this.rating,
     required this.detail,
     required this.genres,
+    required this.gender,
   });
 
   factory RecommendedList.fromJson(Map<String, dynamic> json) {
@@ -36,6 +38,7 @@ class RecommendedList {
       rating: json['score'] ?? 0.0,
       detail: json['synopsis']?.toString() ?? '',
       genres: allGenres,
+      gender: allGenres.isNotEmpty ? allGenres.first : 'Unknown',
     );
   }
 }

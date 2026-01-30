@@ -54,9 +54,13 @@ class HomePage extends StatelessWidget {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
+                    } 
+                    
+                    else if (snapshot.hasError) {
                       return Center(child: Text("Error: ${snapshot.error}"));
-                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    } 
+                    
+                    else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                       return const Center(child: Text("No Data"));
                     }
 
@@ -172,6 +176,7 @@ class HomePage extends StatelessWidget {
                                 pageBuilder:
                                     (context, animation, secondaryAnimation) =>
                                         PopularDetailPage(animeData: popular),
+                
                                 transitionsBuilder:
                                     (
                                       context,
@@ -301,7 +306,7 @@ class HomePage extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      
+
                                       SizedBox(height: 8),
                                       Text(
                                         anime.detail,

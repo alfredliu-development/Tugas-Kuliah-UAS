@@ -1,7 +1,8 @@
+import 'package:anime_detail/page/list/popular_list.dart';
 import 'package:flutter/material.dart';
 
 class PopularDetailPage extends StatefulWidget {
-  final dynamic animeData;
+  final PopularList animeData;
   const PopularDetailPage({super.key, required this.animeData});
 
   @override
