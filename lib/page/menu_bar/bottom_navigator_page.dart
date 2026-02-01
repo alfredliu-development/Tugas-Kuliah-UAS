@@ -12,6 +12,8 @@ class BottomNavigatorPage extends StatefulWidget {
 }
 
 class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
+  Widget? pages;
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -31,7 +33,7 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
           child: GNav(
             onTabChange: (value) => pageChanges(value),
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            gap: 8,
+            gap: 6,
             tabBackgroundColor: Color.fromARGB(255, 102, 191, 255),
             color: Colors.black38,
             activeColor: Colors.white,
@@ -56,12 +58,12 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
 
               GButton(
                 icon: Icons.book,
-                text: "Your Anime List",
+                text: "Your Anime",
               ),
 
               GButton(
                 icon: Icons.favorite,
-                text: "Your Favorite Anime",
+                text: "Your Favorite",
               )
             ],
           ),
@@ -72,7 +74,6 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
 
   void pageChanges(int value) {
     if (value == widget.index) return;
-    Widget pages = HomePage();
     
     switch(value) {
       case 0:
@@ -87,7 +88,7 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
     Navigator.push(
       context,
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => pages,
+        pageBuilder: (context, animation, secondaryAnimation) => pages!,
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
             opacity: animation,

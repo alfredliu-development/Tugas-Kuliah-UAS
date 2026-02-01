@@ -1,7 +1,7 @@
-import 'package:anime_detail/page/menu_bar/home_detail/popular_detail_page.dart';
+import 'package:anime_detail/page/home_detail/popular_detail_page.dart';
 import 'package:anime_detail/page/list/popular_list.dart';
 import 'package:anime_detail/page/list/recommended_list.dart';
-import 'package:anime_detail/page/menu_bar/home_detail/recommend_detail_page.dart';
+import 'package:anime_detail/page/home_detail/recommend_detail_page.dart';
 import 'package:anime_detail/page/menu_bar/bottom_navigator_page.dart';
 import 'package:anime_detail/page/menu_bar/drawer_page.dart';
 import 'package:anime_detail/page/api/popular_services.dart';
@@ -14,11 +14,15 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: ValueKey(0),
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           "Your Anime",
-          style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "Decol"),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: "Decol"
+          ),
         ),
       ),
 

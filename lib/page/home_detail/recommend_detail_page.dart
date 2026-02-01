@@ -36,13 +36,13 @@ class _RecommendDetailPageState extends State<RecommendDetailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 21),
+            SizedBox(height: 21),
             Center(
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
-                    const BoxShadow(
+                    BoxShadow(
                       color: Colors.black26,
                       blurRadius: 10,
                       offset: Offset(10, 15),
@@ -58,7 +58,7 @@ class _RecommendDetailPageState extends State<RecommendDetailPage> {
               ),
             ),
 
-            const SizedBox(height: 25),
+            SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,10 +75,11 @@ class _RecommendDetailPageState extends State<RecommendDetailPage> {
                     ),
                   ],
                 ),
-                const SizedBox(width: 10),
+
+                SizedBox(width: 10),
                 Text(
                   "${widget.animeData.rating}/10.0",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     fontFamily: "Tokumin",
@@ -87,7 +88,7 @@ class _RecommendDetailPageState extends State<RecommendDetailPage> {
               ],
             ),
 
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             Wrap(
               alignment: WrapAlignment.center,
               spacing: 8,
@@ -98,6 +99,7 @@ class _RecommendDetailPageState extends State<RecommendDetailPage> {
                     horizontal: 12,
                     vertical: 6,
                   ),
+
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(100, 64, 196, 255),
                     borderRadius: BorderRadius.circular(20),
@@ -105,6 +107,7 @@ class _RecommendDetailPageState extends State<RecommendDetailPage> {
                       color: const Color.fromARGB(255, 102, 191, 255),
                     ),
                   ),
+
                   child: Text(
                     genre,
                     style: const TextStyle(
@@ -118,19 +121,32 @@ class _RecommendDetailPageState extends State<RecommendDetailPage> {
               }).toList(),
             ),
 
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
             Container(
-              margin: const EdgeInsets.only(left: 20, right: 20, bottom: 45),
-              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+              margin: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                bottom: 45
+              ),
+
+              padding: EdgeInsets.symmetric(
+                horizontal: 25,
+                vertical: 30
+              ),
+
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 border: Border.all(color: Colors.white30, width: 1.5),
                 gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Colors.white38, Colors.white10],
+                  colors: [
+                    Colors.white38,
+                    Colors.white10
+                  ],
                 ),
-                boxShadow: const [
+
+                boxShadow: [
                   BoxShadow(
                     color: Colors.black12,
                     blurRadius: 20,
@@ -138,12 +154,13 @@ class _RecommendDetailPageState extends State<RecommendDetailPage> {
                   ),
                 ],
               ),
+
               height: 400,
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Text(
+                    Text(
                       "Detail",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -153,11 +170,12 @@ class _RecommendDetailPageState extends State<RecommendDetailPage> {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 15),
+
+                    SizedBox(height: 15),
                     Text(
                       widget.animeData.detail,
                       textAlign: TextAlign.justify,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         height: 1.6,
                         fontFamily: "Tokumin",
