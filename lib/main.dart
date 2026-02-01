@@ -1,5 +1,5 @@
 import 'package:anime_detail/account/sign_in.dart';
-import 'package:anime_detail/page/home_page.dart';
+import 'package:anime_detail/page/menu_bar/bottom_navigator_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         future: checkLogin(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) return SizedBox();
-          return snapshot.data == true ? HomePage() : SignIn();
+          return snapshot.data == true ? BottomNavigatorPage() : SignIn();
         },
       ),
     );
