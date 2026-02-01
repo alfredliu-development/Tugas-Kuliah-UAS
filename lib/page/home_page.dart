@@ -1,7 +1,7 @@
-import 'package:anime_detail/page/home_detail/popular_detail_page.dart';
+import 'package:anime_detail/page/detail/popular_detail_page.dart';
 import 'package:anime_detail/page/list/popular_list.dart';
 import 'package:anime_detail/page/list/recommended_list.dart';
-import 'package:anime_detail/page/home_detail/recommend_detail_page.dart';
+import 'package:anime_detail/page/detail/recommend_detail_page.dart';
 import 'package:anime_detail/page/api/popular_services.dart';
 import 'package:anime_detail/page/api/recommended_services.dart';
 import 'package:flutter/material.dart';
